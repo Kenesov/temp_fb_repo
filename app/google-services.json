@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "885535698954",
+    "firebase_url": "https://fir-firestore-test-app-4fa24-default-rtdb.firebaseio.com",
+    "project_id": "fir-firestore-test-app-4fa24",
+    "storage_bucket": "fir-firestore-test-app-4fa24.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:885535698954:android:5aceee333595de506baff3",
+        "android_client_info": {
+          "package_name": "com.example.chatappwithfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "885535698954-ciqgm2ra67dsjsngqvsk450fm5e6gvtp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZNs9j5jc3zvTh-Kk_V5YgLOYyUWxwl6k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "885535698954-ciqgm2ra67dsjsngqvsk450fm5e6gvtp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:885535698954:android:fe5425b3f2481b936baff3",
+        "android_client_info": {
+          "package_name": "com.example.firebasefirestoretestapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "885535698954-ciqgm2ra67dsjsngqvsk450fm5e6gvtp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZNs9j5jc3zvTh-Kk_V5YgLOYyUWxwl6k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "885535698954-ciqgm2ra67dsjsngqvsk450fm5e6gvtp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
