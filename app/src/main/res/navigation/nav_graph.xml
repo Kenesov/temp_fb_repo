@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/groupScreen">
+
+
+    <fragment
+        android:id="@+id/groupScreen"
+        android:name="com.example.chatappwithfirebase.ui.groups.GroupScreen"
+        android:label="GroupScreen"
+        tools:layout="@layout/screen_groups">
+        <action
+            android:id="@+id/action_groupScreen_to_chatScreen"
+            app:destination="@id/chatScreen" />
+        <action
+            android:id="@+id/action_groupScreen_to_screenAddGroup"
+            app:destination="@id/screenAddGroup" />
+        <action
+            android:id="@+id/action_groupScreen_to_editScreen"
+            app:destination="@id/editScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatScreen"
+        android:name="com.example.chatappwithfirebase.ui.chat.ChatScreen"
+        android:label="ChatScreen"
+        tools:layout="@layout/screen_chat">
+
+        <argument
+            android:name="groupName"
+            app:argType="string" />
+
+        <argument
+            android:name="groupId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/screenAddGroup"
+        android:name="com.example.chatappwithfirebase.ui.groups.ScreenAddGroup"
+        tools:layout="@layout/screen_add_group"
+        android:label="ScreenAddGroup" />
+    <fragment
+        android:id="@+id/editScreen"
+        android:name="com.example.chatappwithfirebase.ui.edit.EditScreen"
+        android:label="EditScreen"
+        tools:layout="@layout/screen_edit"/>
+</navigation>
