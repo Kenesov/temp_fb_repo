@@ -5,3 +5,9 @@ sealed class ResultData<out T> {
     data class Message<T>(val message: String): ResultData<T>()
     data class Error<T>(val error: Throwable): ResultData<T>()
 }
+
+enum class PlayState{
+    PLAY,
+    PAUSE,
+    CONTINUE
+}

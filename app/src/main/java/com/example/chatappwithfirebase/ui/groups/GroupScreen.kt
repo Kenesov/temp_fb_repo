@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -19,7 +20,7 @@ import ru.ldralighieri.corbind.view.clicks
 
 class GroupScreen : Fragment(R.layout.screen_groups) {
 
-    private lateinit var viewModel: GroupsViewModel
+    private  val viewModel by viewModels<GroupsViewModel>()
     private var _adapter: GroupAdapter? = null
     private val adapter get() = _adapter!!
 
@@ -27,12 +28,6 @@ class GroupScreen : Fragment(R.layout.screen_groups) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel = ViewModelProvider(
-            requireActivity(),
-            ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
-        )[GroupsViewModel::class.java]
-
 
         initData()
         initObservers()

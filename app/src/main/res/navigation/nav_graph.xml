@@ -38,11 +38,11 @@
     <fragment
         android:id="@+id/screenAddGroup"
         android:name="com.example.chatappwithfirebase.ui.groups.ScreenAddGroup"
-        tools:layout="@layout/screen_add_group"
-        android:label="ScreenAddGroup" />
+        android:label="ScreenAddGroup"
+        tools:layout="@layout/screen_add_group" />
     <fragment
         android:id="@+id/editScreen"
         android:name="com.example.chatappwithfirebase.ui.edit.EditScreen"
         android:label="EditScreen"
-        tools:layout="@layout/screen_edit"/>
+        tools:layout="@layout/screen_edit" />
 </navigation>

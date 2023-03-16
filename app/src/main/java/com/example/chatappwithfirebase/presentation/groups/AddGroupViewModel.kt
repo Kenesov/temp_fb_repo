@@ -2,6 +2,7 @@ package com.example.chatappwithfirebase.presentation.groups
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.chatappwithfirebase.data.models.GroupData
 import com.example.chatappwithfirebase.data.models.ResultData
@@ -13,15 +14,14 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.xml.transform.sax.TemplatesHandler
 
-class AddGroupViewModel(application: Application) : AndroidViewModel(application) {
+class AddGroupViewModel(private val repo: MainRepository) : ViewModel() {
 
-    val repo = MainRepository(FirebaseFirestore.getInstance(), FirebaseDatabase.getInstance())
 
     val addGroupSuccessFlow = MutableSharedFlow<String>()
     suspend fun addGroup(name: String) {
-        repo.addGroup(name).onEach {
-            repo.addGroupToRealtimeDatabase(it)
-            addGroupSuccessFlow.emit(it)
+        repo.addGroup(name).onEach { documentId->
+            repo.addGroupToRealtimeDatabase(documentId)
+            addGroupSuccessFlow.emit(documentId)
         }.launchIn(viewModelScope)
     }
 

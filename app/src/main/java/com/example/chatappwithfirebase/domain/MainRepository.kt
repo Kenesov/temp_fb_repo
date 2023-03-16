@@ -2,23 +2,24 @@ package com.example.chatappwithfirebase.domain
 
 import com.example.chatappwithfirebase.data.local.LocalStorage
 import com.example.chatappwithfirebase.data.models.GroupData
+import com.example.chatappwithfirebase.data.models.PlayState
 import com.example.chatappwithfirebase.data.models.ResultData
+import com.example.chatappwithfirebase.data.remote.TodoApi
 import com.example.chatappwithfirebase.utils.toTime
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
+import java.util.Calendar
 
-class MainRepository(private val fb: FirebaseFirestore, private val rd: FirebaseDatabase) {
+class MainRepository(private val fb: FirebaseFirestore, private val rd: FirebaseDatabase, private val api: TodoApi) {
     suspend fun getGroupChatsFlow() = flow<ResultData<List<GroupData>>> {
-        emit(
-            ResultData.Success(fb.collection("groups").get().await().documents.mapNotNull {
-                GroupData(
-                    it.id, it.data!!["name"].toString()
-                )
-            })
-        )
+        emit(ResultData.Success(fb.collection("groups").get().await().documents.mapNotNull {
+            GroupData(
+                it.id, it.data!!["name"].toString()
+            )
+        }))
     }.catch {
         emit(ResultData.Error(it))
     }
@@ -27,6 +28,8 @@ class MainRepository(private val fb: FirebaseFirestore, private val rd: Firebase
         val data = mapOf(
             "name" to name
         )
+
+        api.getAllTasks()
         fb.collection("groups").document().set(data)
         emit(fb.collection("groups").whereEqualTo("name", name).get().await().documents.first().id)
     }.catch {
@@ -40,6 +43,7 @@ class MainRepository(private val fb: FirebaseFirestore, private val rd: Firebase
             "user" to LocalStorage().username,
             "time" to time.toString().toTime()
         )
+
         rd.getReference(groupId).child(time.toString()).setValue(data)
     }
 

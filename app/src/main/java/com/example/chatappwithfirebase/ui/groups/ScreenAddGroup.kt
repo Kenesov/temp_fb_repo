@@ -14,17 +14,14 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.ldralighieri.corbind.view.clicks
 
 class ScreenAddGroup : Fragment(R.layout.screen_add_group) {
-    private lateinit var viewModel: AddGroupViewModel
     private val binding by viewBinding(ScreenAddGroupBinding::bind)
+    private val viewModel by viewModel<AddGroupViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(
-            requireActivity(),
-            ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
-        )[AddGroupViewModel::class.java]
         initListeners()
         initObservers()
     }

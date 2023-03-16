@@ -24,23 +24,26 @@ import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.ldralighieri.corbind.view.clicks
 import kotlin.random.Random
 
 class ChatScreen : Fragment(R.layout.screen_chat) {
 
     private val binding by viewBinding(ScreenChatBinding::bind)
+    private val viewModel by viewModel<ChatViewModel>()
     private val args: ChatScreenArgs by navArgs()
     private var _adapter: ChatAdapter? = null
     private val adapter get() = _adapter!!
-
-    private lateinit var viewModel: ChatViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initData()
         initObservers()
         initListeners()
+
+
+
     }
 
     private fun initObservers() {
@@ -113,10 +116,5 @@ class ChatScreen : Fragment(R.layout.screen_chat) {
         binding.tvGroupUserCount.text = "${(Random.nextInt(1, 10000))} участников"
         _adapter = ChatAdapter()
         binding.rvChat.adapter = adapter
-
-        viewModel = ViewModelProvider(
-            requireActivity(),
-            ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
-        ).get(ChatViewModel::class.java)
     }
 }
